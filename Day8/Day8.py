@@ -1,6 +1,6 @@
 with open("input.txt", "r") as f:
     test_input = "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2"
-    data = [int(n) for n in f.read().split(" ")] #f.read()
+    data = [int(n) for n in f.read().split(" ")]
 
 
 class Node(object):
