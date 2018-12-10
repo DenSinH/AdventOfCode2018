@@ -62,8 +62,9 @@ while True:
 
     # we expect that there is a word if all rockets have at least one neighbor
     for point in points:
-        for dx, dy in [(-1, 0), (1, 0),
-                       (0, -1), (0, 1)]:
+        for dx, dy in [(-1, -1), (-1, 0), (-1, 1),
+                       (0, -1),           (0, 1),
+                       (1, -1), (1, 0), (1, 1)]:
             if 0 <= point.x + dx < space.shape[0] and 0 <= point.y + dy < space.shape[1]:
                 if space[point.x + dx, point.y + dy] > 0:
                     # break once a neighbor was found
