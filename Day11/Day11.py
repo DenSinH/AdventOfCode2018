@@ -5,7 +5,7 @@ t = time.time()
 
 # input
 serial = 3214
-power_grid_size = 400
+power_grid_size = 300
 
 # x and y arrays
 x, y = np.meshgrid(1 + np.arange(power_grid_size), 1 + np.arange(power_grid_size))
@@ -72,7 +72,7 @@ for s in xrange(1, power_grid_size):
     max_possible <= grid_max + (ds // s_)*(2*(s // s_) + (ds // s_))*s_to_max[s_] +
                                (ds % s_)*(2*(s % s_) + (ds % s_))*4 for s_ in xrange(1, ds + 1)] + [4*ds*(2*s + ds)
                                
-    This is how I got the skipping condition
+    We can do this for all s_ smaller than or equal to min(ds, last_s_checked)
     """
 
     # thickness of the border
@@ -80,7 +80,8 @@ for s in xrange(1, power_grid_size):
 
     # maximum possible value for the squares
     max_possible = grid_max + min([(ds // s_)*(2*(s // s_) + (ds // s_))*s_to_max[s_] +
-                                  (ds % s_)*(2*(s % s_) + (ds % s_))*4 for s_ in xrange(1, ds + 1)] + [4*ds*(2*s + ds)])
+                                  (ds % s_)*(2*(s % s_) + (ds % s_))*4 for s_ in xrange(1, min(ds, last_s_checked) + 1)]
+                                  + [4*ds*(2*s + ds)])
 
     # we need to do part 1 at least
     if s == 3 or max_possible > max_pow:
