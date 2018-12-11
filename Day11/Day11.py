@@ -48,7 +48,7 @@ for s in xrange(1, power_grid_size):
 
     """
     Denote old tiles in a square as #, new parts as @ and parts outside of it as .
-    We can construct the new squares like this (ex. for s = 6 to s = 8):
+    We can construct the new squares like this (ex. for s = 6 to s + ds = 8):
     ######@@.....
     ######@@.....
     ######@@.....
@@ -79,8 +79,8 @@ for s in xrange(1, power_grid_size):
     ds = s - last_s_checked
 
     # maximum possible value for the squares
-    max_possible = grid_max + min([(ds // s_)*(2*(s // s_) + (ds // s_))*s_to_max[s_] +
-                                  (ds % s_)*(2*(s % s_) + (ds % s_))*4 for s_ in xrange(1, min(ds, last_s_checked) + 1)]
+    max_possible = grid_max + min([(ds // s_)*(2*(last_s_checked // s_) + (ds // s_))*s_to_max[s_] +
+                                  (ds % s_)*(2*(last_s_checked % s_) + (ds % s_))*4 for s_ in xrange(1, min(ds, last_s_checked) + 1)]
                                   + [4*ds*(2*s + ds)])
 
     # we need to do part 1 at least
