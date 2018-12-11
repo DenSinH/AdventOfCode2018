@@ -5,9 +5,10 @@ t = time.time()
 
 # input
 serial = 3214
+power_grid_size = 300
 
 # x and y arrays
-x, y = np.meshgrid(1 + np.arange(300), 1 + np.arange(300))
+x, y = np.meshgrid(1 + np.arange(power_grid_size), 1 + np.arange(power_grid_size))
 
 # algorithm for power level
 rack_ids = 10 + x
@@ -41,7 +42,7 @@ s_to_max = {
     1: 4
 }
 
-for s in xrange(1, 300):
+for s in xrange(1, power_grid_size):
     if not s % 10:
         print s
 
