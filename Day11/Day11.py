@@ -5,7 +5,7 @@ t = time.time()
 
 # input
 serial = 3214
-power_grid_size = 300
+power_grid_size = 400
 
 # x and y arrays
 x, y = np.meshgrid(1 + np.arange(power_grid_size), 1 + np.arange(power_grid_size))
@@ -85,13 +85,13 @@ for s in xrange(1, power_grid_size):
     # we need to do part 1 at least
     if s == 3 or max_possible > max_pow:
         # creating the local grid
-        grid_size = 300 - s
+        grid_size = power_grid_size - s
         s_grid = np.zeros((grid_size, grid_size))
 
         # add up all the values in the s-square
         for roll_x in xrange(s):
             for roll_y in xrange(s):
-                s_grid += np.roll(power_level, -roll_x - 300 * roll_y)[:grid_size, :grid_size]
+                s_grid += np.roll(power_level, -roll_x - power_grid_size * roll_y)[:grid_size, :grid_size]
 
         # maximum value for the grid
         grid_max = s_grid.max()
@@ -122,5 +122,6 @@ for s in xrange(1, power_grid_size):
 
 print "Maximum power:", max_pow
 print "At (x, y), s:", max_x, max_y, max_s
-print "Local grid:", power_level[max_y - 1: max_y - 1 + max_s, max_x - 1: max_x - 1 + max_s]
+print "Local grid:"
+print power_level[max_y - 1: max_y - 1 + max_s, max_x - 1: max_x - 1 + max_s]
 print time.time() - t
