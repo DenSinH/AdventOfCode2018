@@ -71,27 +71,21 @@ with open("input.txt", "r") as f:
     ip = int(f.readline()[-2:])
     lines = f.readlines()
     for line in lines:
-        # (code, [regs])
+        # (code, [regs]) for all commands
         program.append((line.split(" ")[0], np.array([int(n) for n in line.split(" ")[1:]])))
 
 
 # a register we perform the operations on
-registers = Registers([1, 0, 0, 0, 0, 0], ip)
+registers = Registers([0, 0, 0, 0, 0, 0], ip)
 
 # run the operation
-ticker = 0
 while True:
-    #print program[registers.point()]
+    # run the operation in the program
     getattr(registers, program[registers.point()][0])(program[registers.point()][1])
     if registers.point() + 1 < len(program):
         registers.vals[registers.ip] += 1
     else:
+        # breaking condition for the program
         break
-
-    if ticker == 100000:
-        ticker = 0
-        print registers.vals
-
-    ticker += 1
 
 print registers.vals
