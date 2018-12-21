@@ -1,0 +1,32 @@
+# ip1
+seti 123 0 3            @ CHECKING IF NOT str
+bani 3 456 3            #
+eqri 3 72 3             #
+addr 3 1 1              # IF str: GOTO @
+seti 0 0 1              #        (GOTO @)
+seti 0 9 3              # r3 = 0
+bori 3 65536 5          $ r5 = 65536 | r3
+seti 15028787 4 3       # r3 = 15028787
+bani 5 255 2            ! r2 = r5 & 255
+addr 3 2 3              # r3 += r2
+bani 3 16777215 3       # r3 &= 16777215
+muli 3 65899 3          # r3 *= 65899
+bani 3 16777215 3       # r3 &= 16777215
+gtir 256 5 2            # IF STATEMENT: if 256 > r5:
+addr 2 1 1              # JMP
+addi 1 1 1              # JMP
+seti 27 3 1             # GOTO * IF 256 > r5
+seti 0 9 2              # r2 = 0  IF not 256 > r5
+addi 2 1 4              + r4 = r2 + 1   |
+muli 4 256 4            # r4 *= 256     |
+gtrr 4 5 4              # r4 = r4 > r5  |
+addr 4 1 1              #               |
+addi 1 1 1              # JMP 1         |   IF not r4 > r5
+seti 25 1 1             # GOTO %        |   IF r4 > r5
+addi 2 1 2              # r2 += 1       |   IF not r4 > r5
+seti 17 8 1             # GOTO +        |   IF not r4 > r5
+setr 2 4 5              % r[5] = r[2]
+seti 7 3 1              # GOTO !
+eqrr 3 0 2              * IF r3 == r0
+addr 2 1 1              # END IF r3 == r0
+seti 5 3 1              # GOTO $
