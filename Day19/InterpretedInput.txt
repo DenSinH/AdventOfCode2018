@@ -10,8 +10,8 @@ addr 5 0 0   # r0 += r5  (IF r2*r5 == r3)
 addi 2 1 2   # r2 += 1   (always)
 gtrr 2 3 1   # r1 = r2 > r3
 addr 4 1 4   # IF CONDITION
-seti 2 6 4   # GOTO *    (IF not r5 > r3)
-addi 5 1 5   # r5 += 1   (IF r5 > r3)
+seti 2 6 4   # GOTO *    (IF not r2 > r3)
+addi 5 1 5   # r5 += 1   (IF r2 > r3)
 gtrr 5 3 1   # r1 = r5 > r3 (IF r5 > r3)
 addr 1 4 4   # IF CONDITION
 seti 1 2 4   # GOTO @    (IF not r5 > r3)
